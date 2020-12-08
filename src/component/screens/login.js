@@ -9,7 +9,7 @@ const Login =()=>{
     const [email,setEmail] = useState("")
     const PostData = ()=>{
     if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)){
-        fetch("/login",{
+        fetch("/sigin",{
             method:"post",
             headers:{
                 "Content-Type":"application/json"
