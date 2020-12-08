@@ -1,4 +1,4 @@
-This project is a Instagram clone using MERN stack.
+This project is a Instagram clone using MERN stack. (This project is still under development)
 
 # Run this MERN project using following commands
 
