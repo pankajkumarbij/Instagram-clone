@@ -1,15 +1,16 @@
 import React from 'react'
-import {useState} from 'react'
+import {useState,useContext} from 'react'
 import  {useHistory,Link} from 'react-router-dom'
 import M from 'materialize-css';
-const Login =()=>{
-    //const {state,dispatch} = useContext(UserContext)
+import {UserContext} from '../../App';
+const Signin =()=>{
+    const {state,dispatch} = useContext(UserContext)
     const history = useHistory()
     const [password,setPasword] = useState("")
     const [email,setEmail] = useState("")
     const PostData = ()=>{
     if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(email)){
-        fetch("/sigin",{
+        fetch("/signin",{
             method:"post",
             headers:{
                 "Content-Type":"application/json"
@@ -20,13 +21,16 @@ const Login =()=>{
             })
         }).then(res=>res.json())
         .then(data=>{
-            console.log(data)
+            //console.log(data)
            if(data.error){
               M.toast({html: data.error,classes:"#c62828 red darken-3"})
            }
            else{
-            M.toast({html:"signed success",classes:"#4caf50 green"})
-            history.push('/')
+               localStorage.setItem("jwt",data.token)
+               localStorage.setItem("user",data)
+               dispatch({type:"USER",payload:data})
+               M.toast({html:"signed success",classes:"#4caf50 green"})
+               history.push('/')
            }
         }).catch(err=>{
             console.log(err)
@@ -57,4 +61,4 @@ const Login =()=>{
       </div>
    )
 }
-export default Login;
+export default Signin;

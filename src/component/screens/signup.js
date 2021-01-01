@@ -28,8 +28,11 @@ const Signup =()=>{
             }
             else{
                 M.toast({html:data.message,classes:"#4caf50 green"})
-                history.push('/login')
+                history.push('/signin')
             }
+        }).catch(err=>
+        {
+            console.log(err)
         })
     }
     else{
@@ -46,7 +49,7 @@ const Signup =()=>{
         <input   type="password" placeholder="password"  value={password} onChange={(e)=>setPassword(e.target.value)} />
         <button className="btn waves-effect waves-light #64b5f6 blue darken-2" onClick={()=>postData()} >Submit</button>
         <h5>
-            <Link to="/login">If you  have account?</Link>
+            <Link to="/signin">If you  have account?</Link>
         </h5>
       </div>
       
